@@ -8,5 +8,6 @@ namespace LocationTracker.Hubs
         {
             await Clients.All.SendAsync("ReceiveNewLocation", latitude, longitude);
         }
+        //
     }
 }
