@@ -23,7 +23,7 @@ namespace LocationTracker.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<double>> GetDistance([FromBody] DistanceRequestDto requestDto)
+        public async Task<ActionResult<Location>> GetDistance([FromBody] DistanceRequestDto requestDto)
         {
             try
             {
@@ -32,13 +32,14 @@ namespace LocationTracker.Controllers
                     return BadRequest(ModelState);
                 }
 
-                var result = await _repository.CalculateDistance(requestDto);
-                if (result >= 20)
+                var distanceResult = await _repository.CalculateDistance(requestDto);
+                if (distanceResult >= 20)
                 {                    
                     await _hubContext.Clients.All.SendAsync("UpdateLocation", requestDto.SecondPointLatitude, requestDto.SecondPointLongitude);
+                    return new Location { Latitude = requestDto.SecondPointLatitude, Longitude = requestDto.SecondPointLongitude };
                 }
 
-                return result;
+                return new Location { Latitude = requestDto.FirstPointLatitude, Longitude = requestDto.FirstPointLongitude };
             }
             catch (Exception ex)
             {
