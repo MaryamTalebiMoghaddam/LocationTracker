@@ -1,23 +1,12 @@
-﻿
-using LocationTracker.Model;
-using Microsoft.AspNetCore.SignalR;
+﻿using LocationTracker.Model;
+
 namespace LocationTracker.Hubs
 {
-    public class LocationHub : Hub<ILocationHub>
+    public class LocationHub : ILocationHub
     {
-        private readonly ILocationHub _locationHubClient;
-
-        public LocationHub(ILocationHub locationHubClient)
+        public async Task<Location> ReceiveNewLocation(double SecondPointLatitude, double SecondPointLongitude)
         {
-            _locationHubClient = locationHubClient;
+             return new Location { Latitude = SecondPointLatitude, Longitude = SecondPointLongitude };
         }
-
-        public async Task UpdateLocation(double latitude, double longitude)
-        {
-            
-            await _locationHubClient.ReceiveNewLocation(latitude, longitude);
-            
-        }
-
     }
 }

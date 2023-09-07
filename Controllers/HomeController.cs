@@ -14,8 +14,8 @@ namespace LocationTracker.Controllers
     {
 
         private readonly IGeoCoordinateRepository _repository;
-        private readonly IHubContext<LocationHub, ILocationHub> _hubContext;
-        public HomeController(IGeoCoordinateRepository repository, IHubContext<LocationHub, ILocationHub> hubContext)
+        private readonly IHubContext<SignalRHub, ILocationHub> _hubContext;
+        public HomeController(IGeoCoordinateRepository repository, IHubContext<SignalRHub, ILocationHub> hubContext)
         {
             _repository = repository;
             _hubContext = hubContext;
@@ -35,8 +35,8 @@ namespace LocationTracker.Controllers
                 var distanceResult = await _repository.CalculateDistance(requestDto);
                 if (distanceResult >= 20)
                 {
-                    await _hubContext.Clients.All.ReceiveNewLocation(requestDto.SecondPointLatitude, requestDto.SecondPointLongitude);
-                    return new Location { Latitude = requestDto.SecondPointLatitude, Longitude = requestDto.SecondPointLongitude };
+                   var result =  await _hubContext.Clients.All.ReceiveNewLocation(requestDto.SecondPointLatitude, requestDto.SecondPointLongitude);
+                   return Ok(result);                        
                 }
 
                 return new Location { Latitude = requestDto.FirstPointLatitude, Longitude = requestDto.FirstPointLongitude };

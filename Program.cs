@@ -11,7 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddScoped<IGeoCoordinateRepository, GeoCoordinateRepository>();
-
+builder.Services.AddScoped<SignalRHub>();
+builder.Services.AddScoped<ILocationHub,LocationHub>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -30,5 +31,5 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 app.MapControllers();
-app.MapHub<LocationHub>("/LocationHub");
+app.MapHub<SignalRHub>("/LocationHub");
 app.Run();
