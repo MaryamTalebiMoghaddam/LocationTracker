@@ -12,18 +12,18 @@ namespace LocationTracker.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        
+
         private readonly IGeoCoordinateRepository _repository;
-        private readonly IHubContext<LocationHub,ILocationHub> _hubContext;
-        public HomeController(IGeoCoordinateRepository repository,  IHubContext<LocationHub,ILocationHub> hubContext)
-        {            
+        private readonly IHubContext<LocationHub, ILocationHub> _hubContext;
+        public HomeController(IGeoCoordinateRepository repository, IHubContext<LocationHub, ILocationHub> hubContext)
+        {
             _repository = repository;
             _hubContext = hubContext;
         }
 
 
         [HttpPost]
-        public async Task<ActionResult<Location>> GetDistance([FromBody] DistanceRequestDto requestDto)
+        public async Task<ActionResult<Location>> GetLocation([FromBody] DistanceRequestDto requestDto)
         {
             try
             {
@@ -34,8 +34,8 @@ namespace LocationTracker.Controllers
 
                 var distanceResult = await _repository.CalculateDistance(requestDto);
                 if (distanceResult >= 20)
-                {                    
-                    await _hubContext.Clients.All.ReceiveNewLocation( requestDto.SecondPointLatitude, requestDto.SecondPointLongitude);
+                {
+                    await _hubContext.Clients.All.ReceiveNewLocation(requestDto.SecondPointLatitude, requestDto.SecondPointLongitude);
                     return new Location { Latitude = requestDto.SecondPointLatitude, Longitude = requestDto.SecondPointLongitude };
                 }
 
@@ -44,7 +44,7 @@ namespace LocationTracker.Controllers
             catch (Exception ex)
             {
 
-                new Exception(ex.Message);              
+                new Exception(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred.");
             }
 
