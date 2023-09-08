@@ -35,8 +35,8 @@ namespace LocationTracker.Controllers
                 var distanceResult = await _repository.CalculateDistance(requestDto);
                 if (distanceResult >= 20)
                 {
-                   var result =  await _hubContext.Clients.All.ReceiveNewLocation(requestDto.SecondPointLatitude, requestDto.SecondPointLongitude);
-                   return Ok(result);                        
+                    await _hubContext.Clients.All.ReceiveNewLocation(requestDto.SecondPointLatitude, requestDto.SecondPointLongitude);
+                   return Ok();                        
                 }
 
                 return new Location { Latitude = requestDto.FirstPointLatitude, Longitude = requestDto.FirstPointLongitude };

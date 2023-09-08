@@ -4,9 +4,9 @@ namespace LocationTracker.Hubs
 {
     public class LocationHub : ILocationHub
     {
-        public async Task<Location> ReceiveNewLocation(double SecondPointLatitude, double SecondPointLongitude)
+        public async Task ReceiveNewLocation(double SecondPointLatitude, double SecondPointLongitude)
         {
-             return new Location { Latitude = SecondPointLatitude, Longitude = SecondPointLongitude };
+             new Location { Latitude = SecondPointLatitude, Longitude = SecondPointLongitude };
         }
     }
 }

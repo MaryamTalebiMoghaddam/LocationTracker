@@ -4,6 +4,6 @@ namespace LocationTracker.Hubs
 {
     public interface ILocationHub
     {
-        Task<Location> ReceiveNewLocation(double SecondPointLatitude, double SecondPointLongitude);
+        Task ReceiveNewLocation(double SecondPointLatitude, double SecondPointLongitude);
     }
 }
