@@ -5,19 +5,22 @@ namespace LocationTracker.Hubs
 {
     public class SignalRHub : Hub<ILocationHub>
     {
-        //private readonly ILocationHub _locationHubClient;
+        private readonly ILocationHub _locationHubClient;
 
-        //public SignalRHub(ILocationHub locationHubClient)
-        //{
-        //    _locationHubClient = locationHubClient;
-        //}
-
-        public async Task UpdateLocation(double latitude, double longitude)
+        public SignalRHub(ILocationHub locationHubClient)
         {
-            
-            await Clients.Caller.ReceiveNewLocation(latitude, longitude);
-            
+            _locationHubClient = locationHubClient;
         }
 
+        public async Task UpdateLocation(string latitude, string longitude)
+        {                      
+             await Clients.All.ReceiveNewLocation(latitude, longitude);
+
+        }
+
+        public override Task OnConnectedAsync()
+        {
+            return base.OnConnectedAsync();
+        }
     }
 }

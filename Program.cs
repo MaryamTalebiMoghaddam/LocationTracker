@@ -10,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddSignalR();
+
 builder.Services.AddScoped<IGeoCoordinateRepository, GeoCoordinateRepository>();
 builder.Services.AddScoped<SignalRHub>();
 builder.Services.AddScoped<ILocationHub,LocationHub>();
@@ -17,7 +19,6 @@ builder.Services.AddScoped<ILocationHub,LocationHub>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSignalR();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

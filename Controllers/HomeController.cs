@@ -35,7 +35,7 @@ namespace LocationTracker.Controllers
                 var distanceResult = await _repository.CalculateDistance(requestDto);
                 if (distanceResult >= 20)
                 {
-                    await _hubContext.Clients.All.ReceiveNewLocation(requestDto.SecondPointLatitude, requestDto.SecondPointLongitude);
+                    await _hubContext.Clients.All.ReceiveNewLocation(requestDto.SecondPointLatitude.ToString(), requestDto.SecondPointLongitude.ToString());
                    return Ok();                        
                 }
 
@@ -43,7 +43,6 @@ namespace LocationTracker.Controllers
             }
             catch (Exception ex)
             {
-
                 new Exception(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred.");
             }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lifeservice\\Documents\\GitHub\\LocationTracker\\LocationTracker.csproj": {}
+    "C:\\Users\\m.talebi\\source\\repos\\LocationTracker\\LocationTracker\\LocationTracker.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lifeservice\\Documents\\GitHub\\LocationTracker\\LocationTracker.csproj": {
+    "C:\\Users\\m.talebi\\source\\repos\\LocationTracker\\LocationTracker\\LocationTracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lifeservice\\Documents\\GitHub\\LocationTracker\\LocationTracker.csproj",
+        "projectUniqueName": "C:\\Users\\m.talebi\\source\\repos\\LocationTracker\\LocationTracker\\LocationTracker.csproj",
         "projectName": "LocationTracker",
-        "projectPath": "C:\\Users\\Lifeservice\\Documents\\GitHub\\LocationTracker\\LocationTracker.csproj",
-        "packagesPath": "C:\\Users\\Lifeservice\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lifeservice\\Documents\\GitHub\\LocationTracker\\obj\\",
+        "projectPath": "C:\\Users\\m.talebi\\source\\repos\\LocationTracker\\LocationTracker\\LocationTracker.csproj",
+        "packagesPath": "C:\\Users\\m.talebi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\m.talebi\\source\\repos\\LocationTracker\\LocationTracker\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Lifeservice\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\m.talebi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -68,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.413\\RuntimeIdentifierGraph.json"
         }
       }
     }
